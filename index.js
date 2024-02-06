@@ -190,6 +190,10 @@ app.get("/venues",async(req,res)=>{
   res.render("venues",{newvenue});
  
 })
+app.get("/settings",(req,res)=>{
+  res.render("settings");
+ 
+})
 app.get("/listing",async(req,res)=>{
  const user=await Register.find({});
  console.log(user);
