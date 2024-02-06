@@ -305,22 +305,22 @@ app.get("/bookedvenue/:id", async (req, res) => {
 // venue wale ko sort krne ke liye
 
 app.get("/delhi-venue",async(req,res)=>{
-  const newvenue=await Register.find({Location:"Delhi"});
+  const newvenue=await venue.find({Location:"Delhi"});
   console.log(newvenue);
   res.render("venues.ejs",{newvenue});
 })
 app.get("/noida-venue",async(req,res)=>{
-  const newvenue=await Register.find({Location:"noida"});
+  const newvenue=await venue.find({Location:"Noida"});
   console.log(newvenue);
   res.render("venues.ejs",{newvenue});
 })
 app.get("/faridabad-venue",async(req,res)=>{
-  const newvenue=await Register.find({Location:"Faridabad"});
+  const newvenue=await venue.find({Location:"Faridabad"});
   console.log(newvenue);
   res.render("venues.ejs",{newvenue});
 })
 app.get("/gurugram-venue",async(req,res)=>{
-  const newvenue=await Register.find({Location:"gurugram"});
+  const newvenue=await venue.find({Location:"Gurugram"});
   console.log(newvenue);
   res.render("venues.ejs",{newvenue});
 })
