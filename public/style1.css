@@ -941,7 +941,7 @@ img {
 
 }
 .buy-btn-venues:hover {
-  background-color: white;
+  background-color: green;
   color: var(--greenbg);
 }
 .fav-venues {
