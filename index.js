@@ -17,6 +17,7 @@ const Register=require("./src/models/register");
 const Contact=require("./src/models/contact");
 const venue=require("./src/models/venuelist");
 const connection=require("./src/db/connection");
+const booking=require("./src/models/bookingvenue");
  app.listen(port,()=>{
     console.log(`app is listening on ${port}`);
  })
@@ -279,9 +280,48 @@ app.get("/tennis",async(req,res)=>{
 app.get("/bookedvenue",(req,res)=>{
   res.render("bookedvenue.ejs");
 })
-app.get("/bookedvenue/:id",async(req,res)=>{
-  let {id}=req.params;
-  const newuser=await venue.findById(id);
-  res.render("bookedvenue.ejs",{newuser});
+app.get("/bookedvenue/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the document in the source collection based on ID
+    const userDocument = await venue.findOne({_id:id});
+
+    if (userDocument) {
+      // Insert the document into the new collection
+      await booking.findOneAndUpdate({ _id: id }, userDocument, { upsert: true });
+
+      // Render the bookedvenue.ejs template with the user details
+      res.render("bookedvenue.ejs",{userDocument});
+    } else {
+      // Handle case where user with the given ID is not found
+      res.status(404).send('User not found');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+// venue wale ko sort krne ke liye
+
+app.get("/delhi-venue",async(req,res)=>{
+  const newvenue=await Register.find({Location:"Delhi"});
+  console.log(newvenue);
+  res.render("venues.ejs",{newvenue});
+})
+app.get("/noida-venue",async(req,res)=>{
+  const newvenue=await Register.find({Location:"noida"});
+  console.log(newvenue);
+  res.render("venues.ejs",{newvenue});
+})
+app.get("/faridabad-venue",async(req,res)=>{
+  const newvenue=await Register.find({Location:"Faridabad"});
+  console.log(newvenue);
+  res.render("venues.ejs",{newvenue});
+})
+app.get("/gurugram-venue",async(req,res)=>{
+  const newvenue=await Register.find({Location:"gurugram"});
+  console.log(newvenue);
+  res.render("venues.ejs",{newvenue});
 })
  
