@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+<link rel="stylesheet" href="/style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script defer src="https://cdn.userfront.com/@userfront/toolkit@latest/dist/web-component.umd.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+		<!-- Navbar -->
+		<div class="nav-container">
+			<div class="nav-logo"><img src="/assets/nav-logo1.png" alt=""></div>
+
+			<div class="navigation">
+				<ul>
+					<li class="list active">
+						<a href="/signin"  class="navbar-links active" data-nav-link>
+							<span class="icon">
+								<ion-icon name="home-outline"></ion-icon>
+							</span>
+							<span class="text active" >Home</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="/listing" class="navbar-links" data-nav-link>
+							<span class="icon">
+								<ion-icon name="person-outline"></ion-icon>
+							</span>
+							<span class="text">Profiles</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="/venues" class="navbar-links" data-nav-link>
+							<span class="icon">
+								<ion-icon name="american-football-outline"></ion-icon> 
+							</span>
+							<span class="text">Venues</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="/bookedvenue" class="navbar-links"  data-nav-link>
+							<span class="icon">
+								<ion-icon name="ticket-outline"></ion-icon>
+							</span>
+							<span class="text">Bookings</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="#" class="navbar-links" data-nav-link>
+							<span class="icon">
+								<ion-icon name="settings-outline"></ion-icon>
+							</span>
+							<span class="text">Settings</span>
+						</a>
+					</li>
+					<div class="indicator"></div>
+				</ul>
+			</div>
+			<div class="search-element">
+				<div class="search-box">
+					<button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+					<input type="text" class="input-search" placeholder="Search here...">
+				  </div>
+				
+			</div>
+			<div class="log-out">
+			<button class="log-btn"><a href="/signup">Log out</a></button>
+		</div>
+		</div>
+
+		<!-- partial -->
+		<div class="middle">
+			<div class="left">
+				<article class="app active-menu" id="home-menu" >
+					<aside class="sidebar">
+						<header>Home Menu </header>
+						<nav class="sidebar-nav">
+							<ul>
+								
+								<li>
+									<a href="#"
+										><i class="ion-ios-analytics-outline"></i>
+										<span class="">Your Pofile →</span></a
+									>
+									<ul class="nav-flyout">
+										<li>
+											<a href="/editprofile/<%=user._id%>" 
+												><i class="ion-ios-timer-outline"></i>Edit Pofile</a
+											>
+										</li>
+										<li>
+											<a href="#"
+												><i class="ion-arrow-graph-down-left"></i>Delete Account</a
+											>
+										</li>
+										
+									
+									</ul>
+								</li>
+								
+								<li>
+									<a href="#"
+										><i class="ion-ios-analytics-outline"></i>
+										<span class="">Other →</span></a
+									>
+									<ul class="nav-flyout">
+										<li>
+											<a href="#"
+												><i class="ion-ios-timer-outline"></i>First</a
+											>
+										</li>
+										<li>
+											<a href="#"
+												><i class="ion-arrow-graph-down-left"></i>SOme other</a
+											>
+										</li>
+										
+									
+									</ul>
+								</li>
+								
+								
+							</ul>
+						</nav>
+					</aside>
+				</article>
+
+				<!-- /////////////////////// PROFILE MENU /////////////////////////////// -->
+				
+
+				<!-- /////////////////////////////////////// VENUES MENU ////////////////////////////-->
+				
+			</div>
+				
+
+			<!-- ////////////////////////////////////// RIGHT DIV //////////////////////////////////////////////////////////////////// -->
+			<div class="right">
+
+
+
+
+				
+		<!-- 
+
+				/////////////////////// Profiles //////////////////////////////////
+
+		 -->
+				
+        
+		
+		
+		<!-- 
+
+				/////////////////////// Home //////////////////////////////////
+
+		 -->
+
+		<article class="wrapper active"   id="home">
+			<div class="container">
+
+        <div class="profile-card">
+            <div class="profile-header"><!-- profile header section -->
+                <div class="main-profile">
+                    <div class="profile-image">
+						<img src="<%=user.Image1%>" alt="" class="profile-image-card">
+						
+					</div>
+                    <div class="profile-names">
+                        <h1 class="username"><%=user.Username%></h1>
+                        <small class="page-title"><%=user.Sports%></small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-body"><!-- profile body section -->
+                <div class="profile-actions">
+                    <button class="follow">Follow</button>
+                    <button class="message">Message</button>
+                    <section class="bio">
+                        <div class="bio-header">
+                            <i class="fa fa-info-circle"></i>
+                            <%=user.Detail%>
+                        </div>
+                        <p class="bio-text">
+                            Baingan .
+                        </p>
+                    </section>
+                </div>
+
+                <div class="account-info">
+                    <div class="data">
+                        <div class="important-data">
+                            <section class="data-item">
+                                <h3 class="value">104</h3>
+                                <small class="title">Friends</small>
+                            </section>
+                            <section class="data-item">
+                                <h3 class="value">243</h3>
+                                <small class="title">Matches</small>
+                            </section>
+                            </section>
+                            <section class="data-item">
+                                <h3 class="value">17</h3>
+                                <small class="title">Venues Booked</small>
+                            </section>
+                        </div>
+                        <div class="other-data">
+                            <section class="data-item">
+                                <h3 class="value">69</h3>
+                                <small class="title">Likes</small>
+                            </section>
+                            <section class="data-item">
+                                <h3 class="value">65</h3>
+                                <small class="title">Comments</small>
+                            </section>
+                            <section class="data-item">
+                                <h3 class="value">2K</h3>
+                                <small class="title">Profile Views</small>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <span>Media Handles :</span>
+                        <a href="" class="media-link"><i class="fab fa-facebook-square"></i></a>
+                        <a href="#" class="media-link"><ion-icon name="logo-twitter"></ion-icon></a>
+                        <a href="#" class="media-link"><ion-icon name="logo-facebook"></ion-icon></a>
+                        <a href="#" class="media-link"><ion-icon name="logo-instagram"></ion-icon></i></a>
+                        <a href="#" class="media-link"><ion-icon name="logo-snapchat"></ion-icon></i></a>
+                    </div>
+
+                    <div class="last-post">
+                        <div class="post-cover">
+							<img src="<%=user.Image%>" alt="">
+                            <span class="last-badge">Fav sport</span>
+                        </div>
+                        <h3 class="post-title"><%=user.Sports%></h3>
+                        <button class="post-CTA">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+		</article>
+		
+
+			</div>
+		</div>
+
+		<div class="footer">
+			<section class="contact">
+				<div class="content">
+					<h2>Contact Us</h2>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem numquam id reprehenderit, sunt laudantium enim possimus repellat debitis et quis!</p>
+				</div>
+				<div class="container">
+					<div class="contactInfo">
+						<div class="box">
+							<div class="icon"><ion-icon name="location-outline"></ion-icon></div>
+							<div class="text">
+								<h3>Address</h3>
+								<p>402671 Sugar Camp Road,<br>Owatonna,Minnesota,<br>55025060</p>
+							</div>
+						</div>
+						<div class="box">
+							<div class="icon"><ion-icon name="call-outline"></ion-icon></div>
+							<div class="text">
+								<h3>Phone</h3>
+								<p>000-000-0000</p>
+							</div>
+						</div>
+						<div class="box">
+							<div class="icon"><ion-icon name="mail-outline"></ion-icon></div>
+							<div class="text">
+								<h3>Email</h3>
+								<p>wrub7d78i0e@temporary-mail</p>
+							</div>
+						</div>
+						<h2 class="txt">Connect with us</h2>
+						<ul class="sci">
+							<li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+							<li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+							<li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+							<li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+						</ul>
+					</div>
+		
+					<div class="contactForm">
+						<form>
+							<h2>Send Message</h2>
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span>Full Name</span>
+							</div>
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span>Email</span>
+							</div>
+							<div class="inputBox">
+								<textarea required="required"></textarea>
+								<span>Type your Message...</span>
+							</div>
+							<div class="inputBox">
+								<input type="submit" value="Send">
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+		<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</body>
+</html>

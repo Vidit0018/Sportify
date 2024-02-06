@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+<link rel="stylesheet" href="/bookedvenue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script defer src="https://cdn.userfront.com/@userfront/toolkit@latest/dist/web-component.umd.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+		<!-- Navbar -->
+		<div class="nav-container">
+			<div class="nav-logo"><img src="/assets/nav-logo1.png" alt=""></div>
+
+			<div class="navigation">
+				<ul>
+					<li class="list ">
+						<a href="/signin"  class="navbar-links active" data-nav-link>
+							<span class="icon">
+								<ion-icon name="home-outline"></ion-icon>
+							</span>
+							<span class="text active" >Home</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="/listing" class="navbar-links" data-nav-link>
+							<span class="icon">
+								<ion-icon name="person-outline"></ion-icon>
+							</span>
+							<span class="text">Profiles</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="/venues" class="navbar-links" data-nav-link>
+							<span class="icon">
+								<ion-icon name="american-football-outline"></ion-icon> 
+							</span>
+							<span class="text">Venues</span>
+						</a>
+					</li>
+					<li class="list active">
+						<a href="/bookedvenue" class="navbar-links"  data-nav-link>
+							<span class="icon">
+								<ion-icon name="ticket-outline"></ion-icon>
+							</span>
+							<span class="text">Bookings</span>
+						</a>
+					</li>
+					<li class="list">
+						<a href="#" class="navbar-links" data-nav-link>
+							<span class="icon">
+								<ion-icon name="settings-outline"></ion-icon>
+							</span>
+							<span class="text">Settings</span>
+						</a>
+					</li>
+					<div class="indicator"></div>
+				</ul>
+			</div>
+			<div class="search-element">
+				<div class="search-box">
+					<button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+					<input type="text" class="input-search" placeholder="Search here...">
+				  </div>
+				
+			</div>
+			<div class="log-out">
+			<button class="log-btn"><a href="/signup">Log out</a></button>
+		</div>
+		</div>
+
+		<!-- partial -->
+		<div class="middle">
+			<section class="container-bookings">
+        <h1>Your Bookings</h1>
+          <div class="row-bookings">
+            <article class="card-bookings fl-left">
+              <section class="date">
+                <time datetime="13th feb">
+                  <span>13</span><span>feb</span>
+                </time>
+              </section>
+              <section class="card-cont-bookings">
+                <small></small>
+                <h3>Football Match</h3>
+                <div class="even-date">
+                 <i class="fa fa-calendar"></i>
+                 <time>
+                   <span></span>
+                   <span>05:55pm to 7:55 pm</span>
+                 </time>
+                </div>
+                <div class="even-info">
+                  <i class="fa fa-map-marker"></i>
+                  <p>
+                    Indira Gandhi Sports Complex
+                  </p>
+                </div>
+                <a href="#">Booked</a>
+              </section>
+            </article>
+            
+          </div>
+        </div>
+
+		</div>
+
+		<div class="footer">
+			<section class="contact">
+				<div class="content">
+					<h2>Contact Us</h2>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem numquam id reprehenderit, sunt laudantium enim possimus repellat debitis et quis!</p>
+				</div>
+				<div class="container">
+					<div class="contactInfo">
+						<div class="box">
+							<div class="icon"><ion-icon name="location-outline"></ion-icon></div>
+							<div class="text">
+								<h3>Address</h3>
+								<p>402671 Sugar Camp Road,<br>Owatonna,Minnesota,<br>55025060</p>
+							</div>
+						</div>
+						<div class="box">
+							<div class="icon"><ion-icon name="call-outline"></ion-icon></div>
+							<div class="text">
+								<h3>Phone</h3>
+								<p>000-000-0000</p>
+							</div>
+						</div>
+						<div class="box">
+							<div class="icon"><ion-icon name="mail-outline"></ion-icon></div>
+							<div class="text">
+								<h3>Email</h3>
+								<p>wrub7d78i0e@temporary-mail</p>
+							</div>
+						</div>
+						<h2 class="txt">Connect with us</h2>
+						<ul class="sci">
+							<li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+							<li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+							<li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+							<li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+						</ul>
+					</div>
+		
+					<div class="contactForm">
+						<form>
+							<h2>Send Message</h2>
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span>Full Name</span>
+							</div>
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span>Email</span>
+							</div>
+							<div class="inputBox">
+								<textarea required="required"></textarea>
+								<span>Type your Message...</span>
+							</div>
+							<div class="inputBox">
+								<input type="submit" value="Send">
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+		<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</body>
+</html>
