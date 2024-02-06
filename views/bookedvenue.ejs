@@ -79,6 +79,8 @@
 			<section class="container-bookings">
         <h1>Your Bookings</h1>
           <div class="row-bookings">
+			<% const usersArray = Object.values(bookingticket); %>
+				<% for (let userdetail of usersArray) { %>
             <article class="card-bookings fl-left">
               <section class="date">
                 <time datetime="13th feb">
@@ -87,23 +89,25 @@
               </section>
               <section class="card-cont-bookings">
                 <small></small>
-                <h3>Football Match</h3>
+                <h3><%userdetail.Sports%>Complex</h3>
                 <div class="even-date">
                  <i class="fa fa-calendar"></i>
                  <time>
                    <span></span>
-                   <span>05:55pm to 7:55 pm</span>
+                   <span><%=userdetail.Timing%></span>
                  </time>
                 </div>
                 <div class="even-info">
                   <i class="fa fa-map-marker"></i>
                   <p>
-                    Indira Gandhi Sports Complex
+                   <%=userdetail.Name%>
                   </p>
                 </div>
                 <a href="#">Booked</a>
               </section>
             </article>
+			<%}%>
+			
             
           </div>
         </div>
