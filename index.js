@@ -277,8 +277,10 @@ app.get("/tennis",async(req,res)=>{
   res.render("listing.ejs",{user});
 })
 // sorting ends here
-app.get("/bookedvenue",(req,res)=>{
-  res.render("bookedvenue.ejs");
+app.get("/bookedvenue",async(req,res)=>{
+  const bookingticket=await booking.find({})
+
+  res.render("bookedvenue.ejs",{bookingticket});
 })
 app.get("/bookedvenue/:id", async (req, res) => {
   try {
@@ -292,7 +294,7 @@ app.get("/bookedvenue/:id", async (req, res) => {
       await booking.findOneAndUpdate({ _id: id }, userDocument, { upsert: true });
 
       // Render the bookedvenue.ejs template with the user details
-      res.render("bookedvenue.ejs",{userDocument});
+      res.send("you venue has booked,upadate will reach to you");
     } else {
       // Handle case where user with the given ID is not found
       res.status(404).send('User not found');
