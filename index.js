@@ -26,16 +26,17 @@ var storage=multer.diskStorage({
   destination: function(req,file,cb){
       cb(null,"./public/assets")
   },
-  filename:function(req,file,cb){
-      let ext=path.extname(file.originalname)
-      cb(null,Date.now()+ext);
+  /* */
+  filename: function(req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
   }
 
 });
 var upload=multer({
   storage:storage,
   fileFilter:function(req,file,callback){
-      const allowedMimeTypes = ["image/jpg", "image/png"];
+      const allowedMimeTypes = ["image/jpeg","image/jpg", "image/png"];
       if (allowedMimeTypes.includes(file.mimetype)) {
         callback(null, true);
       }
