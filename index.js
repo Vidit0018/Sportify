@@ -45,7 +45,7 @@ var upload=multer({
       }
   },
   limits:{
-      fileSize:1024*1024*2
+      fileSize:1024*1024*1024*2
   }
 });
  app.get("/",(req,res)=>{
@@ -194,7 +194,7 @@ app.get("/settings",(req,res)=>{
 })
 app.get("/listing",async(req,res)=>{
  const user=await Register.find({});
- console.log(user);
+//  console.log(user);
  res.render("listing.ejs",{user});
 })
  app.get("/register-venue",(req,res)=>{

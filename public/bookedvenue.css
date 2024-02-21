@@ -1249,6 +1249,7 @@ img {
 .container-bookings
 {
   width: 90%;
+  height: 65vh;
   margin: 100px auto
 }
 
@@ -1262,12 +1263,13 @@ h1
   margin-bottom: 30px
 }
 
-.row-bookings{overflow: hidden}
+.row-bookings{overflow: scroll}
 
 .card-bookings
 {
   display: table-row;
-  width: 49%;
+  width: 45%;
+  margin-left: 30px;
   background-color: #fff;
   color: #989898;
   margin-bottom: 10px;
@@ -1277,7 +1279,7 @@ h1
   position: relative
 }
 
-.card-bookings + .card-bookings{margin-left: 2%}
+.card-bookings + .card-bookings{}
 
 .date
 {
