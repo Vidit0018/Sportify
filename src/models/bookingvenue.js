@@ -6,6 +6,7 @@ const bookingInfo=new mongoose.Schema({
     Location: {
         type:String,
     },
+   
     
     Sports:{
         type:String,
@@ -15,6 +16,9 @@ const bookingInfo=new mongoose.Schema({
         type:String,
     },
     Timing:{
+        type:String,
+    },
+    Date:{
         type:String,
     },
    Address:{

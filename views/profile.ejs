@@ -50,7 +50,7 @@
                                         <input type="file" class="account-settings-fileinput" name="image" accept="image/*">>
                                     </label> &nbsp;
                                     <button type="button" class="btn btn-default md-btn-flat">Reset</button>
-                                    <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                    <div class="text-light small mt-1" style="color: rgb(28, 28, 30); font-size: 16px;">Strictly use PNG file only</div>
                                 </div>
                             </div>
                             <hr class="border-light m-0">
@@ -78,7 +78,7 @@
                                         <option selected>Football</option>
                                         <option>Badminton</option>
                                         <option>Tennis</option>
-                                        <option>Add others</option>
+                                        <option>All</option>
                                     </select>
                                 </div>
                             </div>
@@ -89,11 +89,12 @@
                                 <div class="form-group">
                                     <label class="form-label">Bio</label>
                                     <textarea class="form-control"
-                                        rows="5" name="Detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
+                                        rows="5" name="Detail">I like .......</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Birthday</label>
-                                    <input type="text" class="form-control" value="May 3, 1995" name="Birthday">
+                                    <input type="date" class="form-control" value="DD/MM/YY" name="Birthday">
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Location</label>
@@ -111,7 +112,7 @@
                                 <h6 class="mb-4">Contacts</h6>
                                 <div class="form-group">
                                     <label class="form-label">Phone</label>
-                                    <input type="text" class="form-control" value="+0 (123) 456 7891" name="Contact">
+                                    <input type="number" class="form-control" value="(+91)888000.." name="Contact">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Website</label>

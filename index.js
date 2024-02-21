@@ -58,12 +58,10 @@ var upload=multer({
        const register=new Register({
            Username:req.body.Username,
            Email:req.body.Email,
-          Password:req.body.Password,
-          
+          Password:req.body.Password, 
       })
       const registered=await register.save();
-      res.send("you successfully registered");
-  
+      res.render("successfullsignup.ejs");
   }
 );
 app.get("/signin",(req,res)=>{
@@ -298,7 +296,7 @@ app.get("/bookedvenue/:id", async (req, res) => {
       await booking.findOneAndUpdate({ _id: id }, userDocument, { upsert: true });
 
       // Render the bookedvenue.ejs template with the user details
-      res.send("you venue has booked,upadate will reach to you");
+      res.render("successfullbooking.ejs");
     } else {
       // Handle case where user with the given ID is not found
       res.status(404).send('User not found');
