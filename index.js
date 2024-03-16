@@ -18,37 +18,49 @@ const Contact=require("./src/models/contact");
 const venue=require("./src/models/venuelist");
 const connection=require("./src/db/connection");
 const booking=require("./src/models/bookingvenue");
+const fileupload=require("express-fileupload");
+const cloudinary=require("cloudinary").v2;
+const fs=require("fs");
+app.use(fileupload({
+  useTempFiles:true
+}))
+//  apikey    
+cloudinary.config({ 
+  cloud_name: 'diukjw38i', 
+  api_key: '779135273943798', 
+  api_secret: 'riHpwxvUAlHEcTNBdotlGuZrXGY' 
+});
  app.listen(port,()=>{
     console.log(`app is listening on ${port}`);
  })
 //  multer ko implement krne ke liye
-var storage=multer.diskStorage({
-  destination: function(req,file,cb){
-      cb(null,"./public/assets")
-  },
-  /* */
-  filename: function(req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
-  }
+// var storage=multer.diskStorage({
+//   destination: function(req,file,cb){
+//       cb(null,"./public/assets")
+//   },
+//   /* */
+//   filename: function(req, file, cb) {
+//     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+//     cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
+//   }
 
-});
-var upload=multer({
-  storage:storage,
-  fileFilter:function(req,file,callback){
-      const allowedMimeTypes = ["image/jpeg","image/jpg", "image/png"];
-      if (allowedMimeTypes.includes(file.mimetype)) {
-        callback(null, true);
-      }
-      else{
-          console.log("only jpg and png file is accepted");
-          callback(null,false);
-      }
-  },
-  limits:{
-      fileSize:1024*1024*1024*2
-  }
-});
+// });
+// var upload=multer({
+//   storage:storage,
+//   fileFilter:function(req,file,callback){
+//       const allowedMimeTypes = ["image/jpeg","image/jpg", "image/png"];
+//       if (allowedMimeTypes.includes(file.mimetype)) {
+//         callback(null, true);
+//       }
+//       else{
+//           console.log("only jpg and png file is accepted");
+//           callback(null,false);
+//       }
+//   },
+//   limits:{
+//       fileSize:1024*1024*1024*2
+//   }
+// });
  app.get("/",(req,res)=>{
    res.render("Firstpage.ejs");
  })
@@ -127,61 +139,77 @@ app.post("/contact",async(req,res)=>{
      res.status(500).send('Internal Server Error');
    }
  });
-app.put("/editprofile/:id",upload.single('image'),async(req,res)=>{
-  const { id } = req.params;
-  const { Sports } = req.body; 
-
-  const imagepath1= '/assets/' + req.file.filename;
-  console.log(imagepath1);
- 
-  // Assuming you get the sport from the request body
-
-    // Logic to set the image path based on the selected sport
-    let imagePath;
-    switch (Sports) {
-        case 'Cricket':
-            imagePath = '/assets/cricket.jpg';
-            break;
-        case 'Badminton':
-            imagePath = '/assets/batminton.jpg';
-            break;
-        case 'Football':
-            imagePath = '/assets/football.jpg';
-            break;
-        case 'Tennis':
-            imagePath = '/assets/tennis.png';
-            break;
-        default:
-            imagePath = '/assets/default.jpg'; // Set a default image if needed
-    }
-
+ app.put("/editprofile/:id", async (req, res, next) => {
   try {
-    const updatedData = {
-      Birthday: req.body.Birthday,
-      Detail: req.body.Detail,
-      Sports:Sports,
-      Contact: req.body.Contact,
-      Location:req.body.Location,
-      Image:imagePath,
-      Image1:imagepath1,
-    
-    };
+      const { id } = req.params;
+      const { Sports } = req.body;
+      const imagepath1 = req.files.image;
 
-    const user = await Register.findByIdAndUpdate(id, updatedData, { new: true });
-    if (!user) {
-     res.send("message is not conveying ,sorry");
-    }
-    
-    res.render("home.ejs",{user});
+      // Upload image to Cloudinary
+      cloudinary.uploader.upload(imagepath1.tempFilePath, async (err, result) => {
+          if (err) {
+              console.error("Error uploading image to Cloudinary:", err);
+              return res.status(500).send("Failed to upload image to Cloudinary");
+          }
+          console.log("Image uploaded to Cloudinary:", result);
+          fs.unlink(imagepath1.tempFilePath, (unlinkErr) => {
+            if (unlinkErr) {
+                console.error("Error deleting temporary file:", unlinkErr);
+            } else {
+                console.log("Temporary file deleted successfully");
+            }
+          })
+          // Assuming you get the sport from the request body
+          let imagePath;
+          switch (Sports) {
+              case 'Cricket':
+                  imagePath = '/assets/cricket.jpg';
+                  break;
+              case 'Badminton':
+                  imagePath = '/assets/badminton.jpg';
+                  break;
+              case 'Football':
+                  imagePath = '/assets/football.jpg';
+                  break;
+              case 'Tennis':
+                  imagePath = '/assets/tennis.png';
+                  break;
+              default:
+                  imagePath = '/assets/default.jpg';
+          }
 
-   
+          try {
+              // Update user data with Cloudinary image URL
+              const updatedData = {
+                  Birthday: req.body.Birthday,
+                  Detail: req.body.Detail,
+                  Sports: Sports,
+                  Contact: req.body.Contact,
+                  Location: req.body.Location,
+                  Image: imagePath,
+                  Image1: result.url,
+              };
+
+              // Update user profile in MongoDB
+              const user = await Register.findByIdAndUpdate(id, updatedData, { new: true });
+              if (!user) {
+                  return res.status(404).send("User not found");
+              }
+
+              console.log("User profile updated successfully:", user);
+              // Redirect to user page with updated user data
+              res.render("home.ejs", { user });
+          } catch (error) {
+              console.error("Error updating user profile:", error);
+              res.status(500).send("Failed to update user profile");
+          }
+      });
+  } catch (error) {
+      console.error("Error:", error);
+      res.status(500).send("Internal Server Error");
   }
-  catch(error){
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-  
 });
+
 
 
 app.get("/venues",async(req,res)=>{
